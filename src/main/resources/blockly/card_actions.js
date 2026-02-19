@@ -1,6 +1,7 @@
 const blocks = [
   {
     "type": "deal_damage",
+    "category": "card",
     "message0": "Deal %1 damage to %2",
     "args0": [
       { "type": "input_value", "name": "DAMAGE", "check": "Number" },
@@ -14,6 +15,7 @@ const blocks = [
   },
   {
     "type": "draw_card",
+    "category": "card",
     "message0": "Draw %1 card(s)",
     "args0": [
       { "type": "input_value", "name": "COUNT", "check": "Number" }
@@ -31,7 +33,10 @@ blocks.forEach(block => {
     block
   ]);
 
+  const toolbox = document.getElementById("toolbox");
+  const category = toolbox.querySelector(`category[id="${block.category}"]`);
+
   const blockElement = document.createElement('block');
   blockElement.setAttribute('type', block.type);
-  document.getElementById("toolbox").getElementById("text").appendChild(blockElement);
+  category.appendChild(blockElement);
 });
